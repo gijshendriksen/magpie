@@ -206,13 +206,14 @@ done
 __Magpie_check_must_be_set "MAGPIE_SUBMISSION_TYPE"
 
 if [ "${MAGPIE_SUBMISSION_TYPE}" != "sbatchsrun" ] \
-    && [ "${MAGPIE_SUBMISSION_TYPE}" != "msubslurmsrun" ]\
-    && [ "${MAGPIE_SUBMISSION_TYPE}" != "msubtorquepdsh" ]\
+    && [ "${MAGPIE_SUBMISSION_TYPE}" != "msubslurmsrun" ] \
+    && [ "${MAGPIE_SUBMISSION_TYPE}" != "msubtorquepdsh" ] \
     && [ "${MAGPIE_SUBMISSION_TYPE}" != "sbatchmpirun" ] \
     && [ "${MAGPIE_SUBMISSION_TYPE}" != "lsfmpirun" ] \
-    && [ "${MAGPIE_SUBMISSION_TYPE}" != "fluxbatchrun" ]
+    && [ "${MAGPIE_SUBMISSION_TYPE}" != "fluxbatchrun" ] \
+    && [ "${MAGPIE_SUBMISSION_TYPE}" != "qsubpdsh" ]
 then
-    echo "MAGPIE_SUBMISSION_TYPE environment variable must be set to sbatchsrun, msubslurmsrun, msubtorquepdsh, sbatchmpirun, lsfmpirun, fluxbatchrun"
+    echo "MAGPIE_SUBMISSION_TYPE environment variable must be set to sbatchsrun, msubslurmsrun, msubtorquepdsh, sbatchmpirun, lsfmpirun, fluxbatchrun, qsubpdsh"
     exit 1
 fi
 
@@ -225,6 +226,12 @@ then
     __Magpie_check_environment_variable_must_be_set "SLURM_JOB_NODELIST"
     __Magpie_check_environment_variable_must_be_set "SLURM_JOB_NAME"
     __Magpie_check_environment_variable_must_be_set "SLURM_JOB_ID"
+elif [ "${MAGPIE_SUBMISSION_TYPE}" == "qsubpdsh" ]
+then
+    __Magpie_check_environment_variable_must_be_set "PBS_NODENUM"
+    __Magpie_check_environment_variable_must_be_set "PBS_NODEFILE"
+    __Magpie_check_environment_variable_must_be_set "PBS_JOBNAME"
+    __Magpie_check_environment_variable_must_be_set "PBS_JOBID"
 fi
 
 #
