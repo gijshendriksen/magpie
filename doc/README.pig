@@ -22,8 +22,8 @@ Instructions For Using Pig
    Sbatch scripts using srun in script-sbatch-srun, Moab Msub+Slurm
    scripts using srun in script-msub-slurm-srun, Moab Msub+Torque
    scripts using pdsh in script-msub-torque-pdsh, LSF scripts using
-   mpirun in script-lsf-mpirun, and Flux scripts in
-   script-flux-batch-run.
+   mpirun in script-lsf-mpirun, Flux scripts in script-flux-batch-run
+   and PBS Qsub scripts using pdsh in script-qsub-pdsh.
 
    You'll likely want to start with the base hadoop+pig script
    (e.g. magpie.sbatch-srun-hadoop-and-pig) for your
